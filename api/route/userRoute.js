@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.route("/register").post(register)
 router.route("/login").post(login)
-router.route("/logout").get(logout)
+router.route("/logout").post(logout) 
 router.route("/getAll").get(isAuthenticated,authorizeRole("admin"),getAllUser)
 router.route("/me/:id").get(isAuthenticated,userProfile)
 .get(isAuthenticated,authorizeRole("admin"),getUserByAdmin)
