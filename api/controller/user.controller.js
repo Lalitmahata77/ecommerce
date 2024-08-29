@@ -1,8 +1,9 @@
 import catchAsycError from "../middleware/catchAsycError.js";
 import User from "../model/user.model.js";
 import ErrorHandler from "../utils/errorHandler.js";
-import sendToken from "../utils/sendToken.js";
-import becrypt from 'bcryptjs'
+// import sendToken from "../utils/sendToken.js";
+import bcrypt from 'bcryptjs'
+import createToken from "../utils/sendToken.js";
 export const register = catchAsycError(async(req,res,next)=>{
     const {username,password,email} = req.body;
     if (!username || !password || !email) {
@@ -20,13 +21,14 @@ export const register = catchAsycError(async(req,res,next)=>{
     const user = new User({username,password,email})
     try {
         await user.save()
-        sendToken(user,201,res)
+        createToken(res, user._id);
         res.status(200).json({
             success : true,
             _id : user._id,
             username : user.username,
             password : user.password,
             email : user.email,
+            isAdmin: newUser.isAdmin,
         })
         
     } catch (error) {
@@ -40,15 +42,26 @@ export const login = catchAsycError(async(req,res,next)=>{
     if (!email || !password) {
         return next (new ErrorHandler("email or password is required"))
     }
-    const user = await User.findOne({email}).select("+password")
-    if (!user) {
+    const existingUser = await User.findOne({email}).select("+password")
+    if (!existingUser) {
         return next(new ErrorHandler("user not found"))
     }
-    const isPasswordMatch = await user.isPasswordCorrect(password)
+    const isPasswordMatch = await existingUser.isPasswordCorrect(password)
     if (!isPasswordMatch) {
        return next(new ErrorHandler("check Email or password",400))
     }
-    sendToken(user,200,res)
+    if (isPasswordMatch) {
+      const token =     createToken(res, existingUser._id);
+  
+        res.status(201).json({
+          _id: existingUser._id,
+          username: existingUser.username,
+          email: existingUser.email,
+          isAdmin: existingUser.isAdmin,
+token
+        })
+        return
+    }
 })
 
 export const logout = catchAsycError(async(req,res,next)=>{
@@ -89,15 +102,42 @@ export const updatePassword = catchAsycError(async(req,res,next)=>{
 
 export const updateUser = catchAsycError(async(req,res,next)=>{
     
-    const newUser = {
-        username : req.body.username,
-        email : req.body.email
+    // const newUser = {
+    //     username : req.body.username,
+    //     email : req.body.email
+    // }
+    // const user = await User.findByIdAndUpdate(req.user._id, newUser,{new : true})
+    // if (!user) {
+    //     return next(new ErrorHandler("User not found with that id",400))
+    // }
+    // res.status(200).json({user})
+
+    const user = await User.findById(req.user._id);
+
+
+  if (user) {
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
+
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(req.body.password, salt);
+      user.password = hashedPassword;
     }
-    const user = await User.findByIdAndUpdate(req.user._id, newUser,{new : true})
-    if (!user) {
-        return next(new ErrorHandler("User not found with that id",400))
-    }
-    res.status(200).json({user})
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      username: updatedUser.username,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
 })
 
 export const updateUserByAdmin = catchAsycError(async(req,res,next)=>{

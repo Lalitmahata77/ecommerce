@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/api/userApiSlice";
 import Loader from "../../components/Loder";
-import { setCredientials } from "../../redux/feature/auth/authSlice";
+import { setCredentials } from "../../redux/feature/auth/authSlice";
 
 
 
@@ -23,18 +23,18 @@ const Login = () => {
             navigate(redirect)
         }
     },[navigate,userInfo,redirect])
-    const submitHandler = (e) =>{
+    const submitHandler = async(e) =>{
 e.preventDefault()
 try {
-    const res = login({email,password}).unwrap()
-    dispatch(setCredientials({...res}))
+    const res = await login({email,password}).unwrap()
+    dispatch(setCredentials({...res}))
     navigate(redirect)
 } catch (error) {
     toast.error(error?.data?.message || error.error)
 }
     }
   return (
-    <div className=" bg-gray-800">
+    <div className=" bg-gray-800 flex">
         <section className="pl-[10rem] flex flex-wrap">
     <div className="mr-[4rem] mt-[5rem]">
       <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
@@ -96,12 +96,12 @@ try {
             </p>
           </div>
         </div>
+      
         <img
           src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
           alt=""
           className="h-[65rem] w-[59%] xl:block md:hidden sm:hidden rounded-lg"
         />
-      
 </section>
 </div>
   )
