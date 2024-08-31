@@ -73,7 +73,7 @@ export const logout = catchAsycError(async(req,res,next)=>{
 })
 
 export const getAllUser = catchAsycError(async(req,res,next)=>{
-    const allUser = await User.find()
+    const allUser = await User.find({})
     res.status(200).json({allUser})
 })
 
