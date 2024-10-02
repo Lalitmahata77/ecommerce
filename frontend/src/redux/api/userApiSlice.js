@@ -35,8 +35,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
                 url : `${USER_URL}/getAll`,
             
             }),
-            providesTags : ["User"],
+           providesTags : ["User"],
             keepUnusedDataFor: 5,
+          
             
         }),
         deleteUser : builder.mutation({
