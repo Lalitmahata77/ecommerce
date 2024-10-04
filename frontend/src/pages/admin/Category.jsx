@@ -3,12 +3,14 @@ import { useCreateCategoryMutation, useDeleteCategoryMutation, useFetchCategorie
 import toast from "react-hot-toast"
 import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Model";
+import AdminMenu from "./AdminMenu";
 
 
 const CategoryList = () => {
 const [createCategory] = useCreateCategoryMutation()
 const {data: categoriesData} =useFetchCategoriesQuery()
-const categories = categoriesData?.categories || [];
+const categories = categoriesData?.category || {};
+
 
 const [updateCategory] = useUodateCategoryMutation()
 const [deleteCategory] = useDeleteCategoryMutation()
@@ -90,7 +92,7 @@ const handleUpdateCategory = async (e) => {
 
   return (
     <div className="ml-[10rem] flex flex-col md:flex-row ">
-      {/* <AdminMenu /> */}
+      <AdminMenu />
       <div className="md:w-3/4 p-3">
         <div className="h-12">Manage Categories</div>
         <CategoryForm

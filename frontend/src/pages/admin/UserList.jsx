@@ -12,8 +12,8 @@ import toast from "react-hot-toast";
 // import AdminMenu from "./AdminMenu";
 
 const UserList = () => {
-  const { data: users, refetch, isLoading, error } = useGetAllUserQuery();
-
+  const { data: usersData, refetch, isLoading, error } = useGetAllUserQuery();
+  const users = usersData?.allUser || {};
   const [deleteUser] = useDeleteUserMutation();
 
   const [editableUserId, setEditableUserId] = useState(null);

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+// const { ObjectId } = mongoose.Schema;
 const reviewSchema = new mongoose.Schema({
     name : {
         type : String,
@@ -38,11 +39,7 @@ const productSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
-    categoey : {
-        type : mongoose.Schema.Types.ObjectId,
-        required : true,
-        ref : "Category"
-    },
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category",  },
     reviews : [reviewSchema],
     rating : {
         type : Number,

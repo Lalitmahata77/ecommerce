@@ -1,4 +1,5 @@
 import express from "express"
+import path from "path"
 const app = express()
 import dotenv from "dotenv"
 import dbConnect from "./config/dbConnect.js"
@@ -11,8 +12,16 @@ app.use(cookieParser())
 
 import userRoute from './route/userRoute.js'
 import categoryRoute from "./route/categoryRoute.js"
+import productRoute from "./route/productRoute.js"
+import uploadRoutes from "./route/uploadRoute.js";
+
 app.use("/api/v2",userRoute)
 app.use("/api/category",categoryRoute)
+app.use("/api/products",productRoute)
+app.use("/api/upload", uploadRoutes);
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
+
 app.listen(PORT, ()=>{
     dbConnect()
     console.log(`server is listening on port : ${PORT}`);
