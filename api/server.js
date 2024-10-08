@@ -14,11 +14,12 @@ import userRoute from './route/userRoute.js'
 import categoryRoute from "./route/categoryRoute.js"
 import productRoute from "./route/productRoute.js"
 import uploadRoutes from "./route/uploadRoute.js";
-
+import orderRoute from "./route/orderRoute.js"
 app.use("/api/v2",userRoute)
 app.use("/api/category",categoryRoute)
 app.use("/api/products",productRoute)
 app.use("/api/upload", uploadRoutes);
+app.use("/api/order",orderRoute)
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 
