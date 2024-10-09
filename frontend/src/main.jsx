@@ -21,6 +21,13 @@ import Favorites from './pages/Products/Favorites.jsx';
 import ProductDetails from './pages/Products/ProductDetails.jsx';
 import Cart from './pages/Cart.jsx';
 import Shop from './pages/Shop.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import Shipping from './pages/Orders/Shipping.jsx';
+import PlaceOrder from './pages/Orders/PlaceOrder.jsx';
+import Order from './pages/Orders/Order.jsx';
+import OrderList from './pages/admin/OrderList.jsx';
+import UserOrder from './pages/user/UserOrder.jsx';
+import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -33,12 +40,25 @@ const router = createBrowserRouter(
 <Route path="/cart" element={<Cart />} />
 <Route path="/shop" element={<Shop />} />
 
+
+
+  {/* Registered users */}
+  <Route path="" element={<PrivateRoute />}>
+        <Route path="/profile" element={<Profile />} />
+        <Route path='/user-orders' element={<UserOrder/>}/>
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/placeorder" element={<PlaceOrder />} />
+        <Route path="/order/:id" element={<Order />} />
+      </Route>
+
       <Route path="/admin" element={<AdminRoute />}>
       <Route path="userlist" element={<UserList />} />
       <Route path='categorylist' element={<Category/>}/>
       <Route path='productlist' element={<ProductList/>}/>
       <Route path="allproductslist" element={<AllProducts />} />
       <Route path="product/update/:_id" element={<ProductUpdate />} />
+      <Route path="orderlist" element={<OrderList />} />
+      <Route path="dashboard" element={<AdminDashboard />} />
       </Route>
     
     </Route>

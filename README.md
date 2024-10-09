@@ -34,7 +34,7 @@ Set up your components (e.g. product listings, shopping cart, user profile)
 
 Use React Router to handle navigation between pages
 
-Use Axios to make API requests to your backend server.
+
 
 Implement payment processing:
 
@@ -47,37 +47,6 @@ Use the platform's API to handle payments and transactions.
 [This application is deployed on Render Please check it out : 😀 smile](https://hateybazarey.onrender.com) 
 Website load may take some time, so please wait.
 
-<table>
-  <tr>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/Screenshot%20(11).png" /></td>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/Screenshot%20(12).png" alt="mockups" /></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/Screenshot%20(14).png" /></td>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/Screenshot%20(17).png" /></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/Screenshot%20(19).png" /></td>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/Screenshot%20(21).png" alt="mockups" /></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/1.png" /></td>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/2.jpg" alt="mockups" /></td>
-  </tr>
-   <tr>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/4.png" /></td>
-    <td><img src="https://github.com/codesayanpalcoder/hateybazarey1/blob/main/frontend/public/website%20images/Screenshot%20(14).png" alt="mockups" /></td>
-  </tr>
-</table>
-
-## 🖥️ Tech Stack
-**Frontend:**
-
-![reactjs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
-![react-router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
-![redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)&nbsp;
-![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)&nbsp;
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)&nbsp;
 
 
 **Backend:**
